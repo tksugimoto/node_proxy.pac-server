@@ -3,7 +3,7 @@
 rem move to batch file's directory
 cd /d %~dp0
 
-echo start server
+echo start proxy.pac server
 node server.js
 
 pause
