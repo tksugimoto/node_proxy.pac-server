@@ -9,6 +9,7 @@ var http = require('http'),
 	fs   = require("fs");
 
 http.createServer(function(req, res) {
+	console.log(`[${new Date().toLocaleString()}] ${req.url}`);
 	fs.exists(filename, function (exists) {
 		if (exists) {
 			fs.readFile(filename, "utf8", function (err, file) {
