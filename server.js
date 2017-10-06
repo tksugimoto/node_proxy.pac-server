@@ -8,14 +8,14 @@ console.info(`http://${host}:${port}/`);
 const http = require('http'),
 	fs   = require('fs');
 
-http.createServer(function(req, res) {
+http.createServer((req, res) => {
 	if (req.url === '/favicon.ico') {
 		res.end();
 	} else {
 		console.info(`[${new Date().toLocaleString()}] ${req.url}`);
-		fs.exists(filename, function (exists) {
+		fs.exists(filename, (exists) => {
 			if (exists) {
-				fs.readFile(filename, 'utf8', function (err, file) {
+				fs.readFile(filename, 'utf8', (err, file) => {
 					if (err) {
 						res.writeHead(404, {
 							'Content-Type': 'text/plain',
