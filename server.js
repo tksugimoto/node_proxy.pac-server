@@ -18,13 +18,13 @@ http.createServer(function(req, res) {
 				fs.readFile(filename, "utf8", function (err, file) {
 					if (err) {
 						res.writeHead(404, {
-							"Content-Type": "text/plain"
+							"Content-Type": "text/plain",
 						});
 						res.write(`File Not Found\n${filename}\nerr: ${err}`);
 						res.end();
 					} else {
 						res.writeHead(200, {
-							"Content-Type": "text/plain"
+							"Content-Type": "text/plain",
 						});
 						res.write(file);
 						res.end();
@@ -32,7 +32,7 @@ http.createServer(function(req, res) {
 				});
 			} else {
 				res.writeHead(404, {
-					"Content-Type": "text/plain"
+					"Content-Type": "text/plain",
 				});
 				res.write(`File Not Found\n${filename}`);
 				res.end();
