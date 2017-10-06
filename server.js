@@ -5,8 +5,8 @@ const filename = './files/proxy.pac';
 
 console.info(`http://${host}:${port}/`);
 
-const http = require('http'),
-	fs   = require('fs');
+const http = require('http');
+const fs = require('fs');
 
 http.createServer((req, res) => {
 	if (req.url === '/favicon.ico') {
