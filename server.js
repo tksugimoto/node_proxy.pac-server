@@ -1,11 +1,11 @@
 
-var port = 1024;
-var host = "127.0.0.1";
-var filename = "./files/proxy.pac";
+const port = 1024;
+const host = "127.0.0.1";
+const filename = "./files/proxy.pac";
 
 console.log(`http://${host}:${port}/`);
 
-var http = require('http'),
+const http = require('http'),
 	fs   = require("fs");
 
 http.createServer(function(req, res) {
