@@ -1,5 +1,5 @@
 
-const port = 1024;
+const port = Number(process.argv[2]) || 1024;
 const host = '127.0.0.1';
 const filename = './files/proxy.pac';
 
