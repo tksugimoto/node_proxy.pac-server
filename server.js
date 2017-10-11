@@ -13,30 +13,17 @@ http.createServer((req, res) => {
 		res.end();
 	} else {
 		console.info(`[${new Date().toLocaleString()}] ${req.url}`);
-		fs.exists(filename, (exists) => {
-			if (exists) {
-				fs.readFile(filename, 'utf8', (err, file) => {
-					if (err) {
-						res.writeHead(404, {
-							'Content-Type': 'text/plain',
-						});
-						res.write(`File Not Found\n${filename}\nerr: ${err}`);
-						res.end();
-					} else {
-						res.writeHead(200, {
-							'Content-Type': 'text/plain',
-						});
-						res.write(file);
-						res.end();
-					}
-				});
-			} else {
-				res.writeHead(404, {
-					'Content-Type': 'text/plain',
-				});
-				res.write(`File Not Found\n${filename}`);
-				res.end();
-			}
-		});
+		fs.createReadStream(filename).on('error', err => {
+			console.error('File Not Found', err);
+			res.writeHead(404, {
+				'Content-Type': 'text/plain',
+			});
+			res.write(`File Not Found\n${filename}`);
+			res.end();
+		}).once('data', () => {
+			res.writeHead(200, {
+				'Content-Type': 'text/plain',
+			});
+		}).pipe(res);
 	}
 }).listen(port, host);
