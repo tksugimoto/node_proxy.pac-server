@@ -15,10 +15,11 @@ http.createServer((req, res) => {
 		console.info(`[${new Date().toLocaleString()}] ${req.url}`);
 		fs.readFile(filename, 'utf8', (err, file) => {
 			if (err) {
+				console.error('File Not Found', err);
 				res.writeHead(404, {
 					'Content-Type': 'text/plain',
 				});
-				res.write(`File Not Found\n${filename}\nerr: ${err}`);
+				res.write(`File Not Found\n${filename}`);
 				res.end();
 			} else {
 				res.writeHead(200, {
