@@ -25,7 +25,7 @@ const renderStatus = async () => {
 };
 
 const applyPacUrl = async url => {
-	// 同じ URL を再設定しても PAC が再取得されないことがあるため、一度解除してから設定する
+	// 同じ URL を再設定しても PAC が再取得されないことがあるため、一度解除してから設定する (Chrome での実動作は未確認)
 	await chrome.proxy.settings.clear({});
 	await chrome.proxy.settings.set({
 		value: {
@@ -43,8 +43,8 @@ form.addEventListener('submit', async event => {
 	showMessage();
 	const url = input.value.trim();
 	try {
-		await chrome.storage.sync.set({ pacUrl: url });
 		await applyPacUrl(url);
+		await chrome.storage.sync.set({ pacUrl: url });
 	} catch (err) {
 		showMessage(`適用に失敗しました: ${err.message}`);
 	}
