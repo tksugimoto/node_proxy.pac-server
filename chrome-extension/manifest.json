@@ -8,7 +8,13 @@
 		"storage"
 	],
 	"action": {
-		"default_title": "PAC URL Switcher",
-		"default_popup": "popup.html"
+		"default_title": "PAC URL Switcher"
+	},
+	"options_ui": {
+		"page": "options.html",
+		"open_in_tab": true
+	},
+	"background": {
+		"service_worker": "background.js"
 	}
 }
